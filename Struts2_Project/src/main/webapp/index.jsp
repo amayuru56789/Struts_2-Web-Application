@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
     <head>
         <title>Start Page</title>
