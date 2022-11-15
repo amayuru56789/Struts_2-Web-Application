@@ -93,4 +93,34 @@ public class RegisterAction extends ActionSupport {
         }
         
     }
+    
+    public String updateUser() throws ClassNotFoundException, SQLException{
+        
+        HttpServletResponse response = ServletActionContext.getResponse();
+        HttpServletRequest request = ServletActionContext.getRequest();
+        
+        LocalDateTime time = LocalDateTime.now();  
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");  
+        String lastDateTime = time.format(format);
+        
+        RegistrationBean registrationBean = new RegistrationBean(
+                  request.getParameter("userID"),
+                  request.getParameter("userName"),
+                  request.getParameter("address"),
+                  request.getParameter("email"),
+                  request.getParameter("contact"),
+                  request.getParameter("password"),
+                  " ",
+                  lastDateTime
+          );
+        System.out.println(registrationBean);
+        boolean updateUser = registrationDao.updateUser(registrationBean);
+        if(updateUser){
+            result.put("status", "200");
+            return SUCCESS;
+        }else{
+            result.put("status", "400");
+            return SUCCESS;
+        }
+    }
 }

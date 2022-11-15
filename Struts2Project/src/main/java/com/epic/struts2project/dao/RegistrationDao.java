@@ -71,17 +71,17 @@ System.out.println("Hello");
     
     public boolean updateUser(RegistrationBean registrationBean) throws ClassNotFoundException, SQLException{
         Connection connection = dbConnection.getConnection();
-        LocalDateTime time = LocalDateTime.now();  
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");  
-        String lastDateTime = time.format(format);
+//        LocalDateTime time = LocalDateTime.now();  
+//        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");  
+//        String lastDateTime = time.format(format);
         PreparedStatement pstm = connection.prepareStatement("update Registration set userName=?, address=?, email=?, contact=?, password=?, createTime=?, lastUpdateTime=? where userID=?");
         pstm.setObject(1, registrationBean.getUserName());
         pstm.setObject(2, registrationBean.getAddress());
         pstm.setObject(3, registrationBean.getEmail());
         pstm.setObject(4, registrationBean.getContact());
         pstm.setObject(5, registrationBean.getPassword());
-        pstm.setObject(6, "");
-        pstm.setObject(7, lastDateTime);
+        pstm.setObject(6, registrationBean.getCreateTime());
+        pstm.setObject(7, registrationBean.getLastUpdateTime());
         pstm.setObject(8, registrationBean.getUserID());
         if (pstm.executeUpdate() > 0){
             return true;

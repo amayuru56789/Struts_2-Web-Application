@@ -61,13 +61,13 @@ function updateUser() {
        /*let serialize = $("#userForm").serialize();*/
        /*implement ajax request for updateUser Function*/
         $.ajax({
-          url:"http://localhost:8084/SimpleCrud/Registration",
+          url:"updateuser",
           method:"PUT",
           contentType:"application/json", //request content type json
           data:JSON.stringify(userOb) , //convert valid json String
           success:function (res){
               /*console.log(res);*/
-              if (res.status===200){
+              if (res.status==="200"){
                   swal("Successfully Update the User!", "You clicked the button!", "success");
                   //alert(res.message);
                   loadAllUsers();

@@ -35,6 +35,12 @@
                 <param name="root"></param>           
             </result>
         </action>
+        
+        <action name="updateuser" class="com.epic.struts2project.action.RegisterAction" method="updateUser">
+            <result name="success" type="json">
+                <param name="root"></param>           
+            </result>
+        </action>
     </package>
     
 </struts>
