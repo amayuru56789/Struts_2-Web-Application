@@ -49,7 +49,8 @@ function registrationUser(){
            /*console.log(res.message);*/
        },
         error:function (ob,textStatus, error){
-           alert(textStatus);
+//           alert(textStatus);
+             swal("Operation failed!", "You clicked the button!", "error");
         }
     });
 }

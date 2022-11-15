@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,13 +28,13 @@ import org.apache.struts2.ServletActionContext;
  */
 public class RegisterAction extends ActionSupport {
     
-    Map<String, String> result = new HashMap<String, String>();
+    Map<String, Object> result = new HashMap<String, Object>();
 
-    public Map<String, String> getResult() {
+    public Map<String, Object> getResult() {
         return result;
     }
 
-    public void setResult(Map<String, String> result) {
+    public void setResult(Map<String, Object> result) {
         this.result = result;
     }
     RegistrationDao registrationDao = new RegistrationDao();
@@ -78,17 +79,21 @@ public class RegisterAction extends ActionSupport {
     }
     
     public String getAllUser() throws SQLException, ClassNotFoundException, IOException{
+        Map<String, List> data = new HashMap<String, List>();
         ArrayList<RegistrationBean> details = registrationDao.report();
         //System.out.println(details);
         HttpServletResponse response = ServletActionContext.getResponse();
         HttpServletRequest request = ServletActionContext.getRequest();
-        PrintWriter writer = response.getWriter();
-        writer.print(details);
+//        PrintWriter writer = response.getWriter();
+//        writer.print(details);
         if(details == null){
-            result.put("status", "400");
+            System.out.println("Hello");
+            
             return SUCCESS;
         }else{
-            result.put("data", "200");
+            System.out.println("Hello ok");
+            result.put("data", details);
+            
             return SUCCESS;
         }
         

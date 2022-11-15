@@ -15,8 +15,11 @@ function loadAllUsers() {
         //convert to json format
        dataType:"json",
        success:function (res){
-           for (const user of res) {
+//           console.log(res);
+           var obj = res;
+           for (const user of obj.result.data) {
                /*console.log(user.userID);*/
+               console.log(user);
                let row = `<tr><td>${user.userID}</td><td>${user.userName}</td><td>${user.address}</td><td>${user.email}</td><td>${user.contact}</td><td>${user.password}</td></tr>`;
                $("#userTable").append(row);
            }
