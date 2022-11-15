@@ -36,9 +36,8 @@ function registrationUser(){
        url: "registeruser",
        method: "POST",
        data:"userID="+user.userID+"&"+"userName="+user.userName+"&"+"address="+user.address+"&"+"email="+user.email+"&"+"contact="+user.contact+"&"+"password="+user.password, //if we send data with the request
-       success:function (res){
-           alert(res);
-           if (res.status=="200"){
+       success:function (res){          
+           if (res.status==="200"){
                //alert(res.message);
                //loadAllCustomers();
                clearFields();
