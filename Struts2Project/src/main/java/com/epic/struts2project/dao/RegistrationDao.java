@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -65,5 +67,26 @@ System.out.println("Hello");
         }
         
         return load;
+    }
+    
+    public boolean updateUser(RegistrationBean registrationBean) throws ClassNotFoundException, SQLException{
+        Connection connection = dbConnection.getConnection();
+        LocalDateTime time = LocalDateTime.now();  
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");  
+        String lastDateTime = time.format(format);
+        PreparedStatement pstm = connection.prepareStatement("update Registration set userName=?, address=?, email=?, contact=?, password=?, createTime=?, lastUpdateTime=? where userID=?");
+        pstm.setObject(1, registrationBean.getUserName());
+        pstm.setObject(2, registrationBean.getAddress());
+        pstm.setObject(3, registrationBean.getEmail());
+        pstm.setObject(4, registrationBean.getContact());
+        pstm.setObject(5, registrationBean.getPassword());
+        pstm.setObject(6, "");
+        pstm.setObject(7, lastDateTime);
+        pstm.setObject(8, registrationBean.getUserID());
+        if (pstm.executeUpdate() > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
