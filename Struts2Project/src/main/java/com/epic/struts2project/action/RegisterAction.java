@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServlet;
@@ -74,5 +75,22 @@ public class RegisterAction extends ActionSupport {
               return SUCCESS;
           }
         //return SUCCESS;
+    }
+    
+    public String getAllUser() throws SQLException, ClassNotFoundException, IOException{
+        ArrayList<RegistrationBean> details = registrationDao.report();
+        //System.out.println(details);
+        HttpServletResponse response = ServletActionContext.getResponse();
+        HttpServletRequest request = ServletActionContext.getRequest();
+        PrintWriter writer = response.getWriter();
+        writer.print(details);
+        if(details == null){
+            result.put("status", "400");
+            return SUCCESS;
+        }else{
+            result.put("data", "200");
+            return SUCCESS;
+        }
+        
     }
 }

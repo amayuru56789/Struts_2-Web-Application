@@ -29,6 +29,12 @@
                 <param name="root">result</param>           
             </result>
         </action>
+        
+        <action name="report" class="com.epic.struts2project.action.RegisterAction" method="getAllUser">
+            <result name="success" type="json">
+                <param name="root"></param>           
+            </result>
+        </action>
     </package>
     
 </struts>

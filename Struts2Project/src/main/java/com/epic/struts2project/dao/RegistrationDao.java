@@ -44,26 +44,26 @@ System.out.println("Hello");
         //return pstm.executeUpdate()>0;
     }
     
-//    public ArrayList<RegistrationBean> report() throws SQLException, ClassNotFoundException{
-//        Connection connection = dbConnection.getConnection();
-//        PreparedStatement pstm = connection.prepareStatement("select * from Registration");
-//        ResultSet rst = pstm.executeQuery();
-//        //System.out.println(rst.getObject(1));
-//        ArrayList<RegistrationBean> load = new ArrayList<>();
-//        while(rst.next()){
-//             RegistrationBean registrationBean = new RegistrationBean(
-//                     rst.getString(1),
-//                     rst.getString(2),
-//                     rst.getString(3),
-//                     rst.getString(4),
-//                     rst.getString(5),
-//                     rst.getString(6),
-//                     rst.getString(7),
-//                     rst.getString(8)
-//             );
-//             load.add(registrationBean);
-//        }
-//        
-//        return load;
-//    }
+    public ArrayList<RegistrationBean> report() throws SQLException, ClassNotFoundException{
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement pstm = connection.prepareStatement("select * from Registration");
+        ResultSet rst = pstm.executeQuery();
+        //System.out.println(rst.getObject(1));
+        ArrayList<RegistrationBean> load = new ArrayList<RegistrationBean>();
+        while(rst.next()){
+             RegistrationBean registrationBean = new RegistrationBean(
+                     rst.getString(1),
+                     rst.getString(2),
+                     rst.getString(3),
+                     rst.getString(4),
+                     rst.getString(5),
+                     rst.getString(6),
+                     rst.getString(7),
+                     rst.getString(8)
+             );
+             load.add(registrationBean);
+        }
+        
+        return load;
+    }
 }
