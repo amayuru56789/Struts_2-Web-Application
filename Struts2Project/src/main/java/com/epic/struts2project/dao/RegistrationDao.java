@@ -89,4 +89,16 @@ System.out.println("Hello");
             return false;
         }
     }
+    
+    public boolean deleteUser(String userID) throws ClassNotFoundException, SQLException{
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement pstm = connection.prepareStatement("delete from Registration where userID=?");
+        pstm.setObject(1, userID);
+        
+        if (pstm.executeUpdate() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
