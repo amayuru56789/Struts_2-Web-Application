@@ -125,6 +125,12 @@ public class RegisterAction extends ActionSupport {
     }
     
     public String deleteUser(){
+        
+        HttpServletResponse response = ServletActionContext.getResponse();
+        HttpServletRequest request = ServletActionContext.getRequest();
+        
+        String userID = request.getParameter("userID");
+        System.out.println(userID);
         return SUCCESS;
     }
 }

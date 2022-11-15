@@ -143,7 +143,7 @@ $("#btnDelete").click(function () {
 let userID = $("#txtUserId").val();
 
     $.ajax({
-        url: "http://localhost:8084/SimpleCrud/Registration?userID=" + userID,
+        url: "deleteuser?userID=" + userID,
         method: "DELETE",
         success: function (resp) {
             if (resp.status === 200) {
