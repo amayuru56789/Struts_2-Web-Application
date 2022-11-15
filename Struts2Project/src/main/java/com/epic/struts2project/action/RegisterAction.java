@@ -123,4 +123,8 @@ public class RegisterAction extends ActionSupport {
             return SUCCESS;
         }
     }
+    
+    public String deleteUser(){
+        return SUCCESS;
+    }
 }
