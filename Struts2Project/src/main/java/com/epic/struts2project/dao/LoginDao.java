@@ -20,7 +20,7 @@ public class LoginDao {
     public boolean checkEqualityUser(String userName, String password) throws ClassNotFoundException, SQLException{
         DbConnection dbConnection = new DbConnection();
         Connection connection = dbConnection.getConnection();
-        PreparedStatement pstm = connection.prepareStatement("select * from Registration where userID=? && password=?");
+        PreparedStatement pstm = connection.prepareStatement("select * from Registration where userName=? && password=?");
         pstm.setObject(1, userName);
         pstm.setObject(2, password);
         ResultSet rst = pstm.executeQuery();

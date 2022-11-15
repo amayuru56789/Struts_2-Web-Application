@@ -16,15 +16,15 @@ $("#btnLog").click(function (){
 
 //invoked ajax
     $.ajax({
-        url: 'http://localhost:8084/SimpleCrud/Login',
+        url: 'loginuser',
         method: 'POST',
         //async: true,
         //data: {"userName":userName,"password":password},
-        data:JSON.stringify(obj),
+        data:"userName=" + obj.userName + "&password=" + obj.password,
         //dataType: json,
         success: function (res){
             console.log(res);
-            if (res.status===200){
+            if (res.status==="200"){
                 //alert("Success");
                 swal("Login success!", "You clicked the button!", "success");
                 window.location = "ViewUser.jsp"
