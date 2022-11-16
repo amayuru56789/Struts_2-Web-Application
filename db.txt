@@ -1,0 +1,24 @@
+CREATE DATABASE IF NOT EXISTS `epicdb`;
+SHOW DATABASES;
+USE `epicdb`;
+
+CREATE TABLE IF NOT EXISTS Registration(
+	userID VARCHAR(10),
+	userName VARCHAR(45) NOT NULL DEFAULT 'Unknown',
+	address VARCHAR(25) NOT NULL,
+	email VARCHAR(18),
+	contact VARCHAR(24),
+	password VARCHAR(65) NOT NULL,
+	createTime VARCHAR(50),
+	lastUpdateTime VARCHAR(50),
+	CONSTRAINT PRIMARY KEY (userID),
+	CONSTRAINT UNIQUE KEY (userName)	
+); 
+
+SHOW TABLES;
+DESC Registration;
+
+INSERT INTO Registration VALUES
+('U001','Amayuru','Matugama','indeewara@gmail.com','0769689591','12345','12345');
+
+SELECT * FROM Registration;

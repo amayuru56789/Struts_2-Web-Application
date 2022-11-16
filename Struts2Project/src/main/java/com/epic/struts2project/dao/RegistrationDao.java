@@ -24,12 +24,12 @@ public class RegistrationDao {
     DbConnection dbConnection = new DbConnection();
     
     public boolean registerUser(RegistrationBean registrationBean) throws ClassNotFoundException, SQLException{
-System.out.println("Hello");        
+//System.out.println("Hello");        
 //DbConnection dbConnection = new DbConnection();
         Connection connection = dbConnection.getConnection();
-        System.out.println("Hello");
+//        System.out.println("Hello");
         PreparedStatement pstm = connection.prepareStatement("insert into Registration values(?,?,?,?,?,?,?,?)");
-        System.out.println("Hello 2");
+//        System.out.println("Hello 2");
         pstm.setObject(1, registrationBean.getUserID());
         pstm.setObject(2, registrationBean.getUserName());
         pstm.setObject(3, registrationBean.getAddress());

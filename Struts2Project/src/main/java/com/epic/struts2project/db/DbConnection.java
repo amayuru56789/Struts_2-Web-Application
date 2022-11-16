@@ -26,7 +26,7 @@ public class DbConnection {
                
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/epic", "root", "1234");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/epicdb", "root", "1234");
         } catch (SQLException ex) {
             Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
         }    
