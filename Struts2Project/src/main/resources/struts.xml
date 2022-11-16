@@ -44,7 +44,7 @@
         
         <action name="deleteuser" class="com.epic.struts2project.action.RegisterAction" method="deleteUser">
             <result name="success" type="json">
-                <param name="root"></param>           
+                <param name="root">result</param>           
             </result>
         </action>
     </package>

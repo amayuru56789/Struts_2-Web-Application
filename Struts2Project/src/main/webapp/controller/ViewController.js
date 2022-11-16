@@ -60,14 +60,14 @@ function updateUser() {
             contact:$("#txtContact").val(),
             password:$("#txtPassword").val()
         }
-
+        console.log(userOb.userID);
        /*let serialize = $("#userForm").serialize();*/
        /*implement ajax request for updateUser Function*/
         $.ajax({
           url:"updateuser",
           method:"PUT",
-          contentType:"application/json", //request content type json
-          data:JSON.stringify(userOb) , //convert valid json String
+//          contentType:"application/json", //request content type json
+          data:"userID="+userOb.userID+"&"+"userName="+userOb.userName+"&"+"address="+userOb.address+"&"+"email="+userOb.email+"&"+"contact="+userOb.contact+"&"+"password="+userOb.password , //convert valid query String
           success:function (res){
               /*console.log(res);*/
               if (res.status==="200"){
@@ -149,7 +149,7 @@ let userID = $("#txtUserId").val();
         url: "deleteuser?userID=" + userID,
         method: "DELETE",
         success: function (resp) {
-            if (resp.status === 200) {
+            if (resp.status === "200") {
                 swal({
                 title: "Are you sure?",
                 text: "Once deleted, this operation can't be reverted!",

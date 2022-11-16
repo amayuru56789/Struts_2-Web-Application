@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -87,11 +89,11 @@ public class RegisterAction extends ActionSupport {
 //        PrintWriter writer = response.getWriter();
 //        writer.print(details);
         if(details == null){
-            System.out.println("Hello");
+            //System.out.println("Hello");
             
             return SUCCESS;
         }else{
-            System.out.println("Hello ok");
+            //System.out.println("Hello ok");
             result.put("data", details);
             
             return SUCCESS;
@@ -107,7 +109,8 @@ public class RegisterAction extends ActionSupport {
         LocalDateTime time = LocalDateTime.now();  
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");  
         String lastDateTime = time.format(format);
-        
+        String name = request.getParameter("userID");
+        System.out.println(name);
         RegistrationBean registrationBean = new RegistrationBean(
                   request.getParameter("userID"),
                   request.getParameter("userName"),
@@ -129,13 +132,24 @@ public class RegisterAction extends ActionSupport {
         }
     }
     
-    public String deleteUser(){
+    public String deleteUser() throws ClassNotFoundException{
         
         HttpServletResponse response = ServletActionContext.getResponse();
         HttpServletRequest request = ServletActionContext.getRequest();
         
         String userID = request.getParameter("userID");
-        System.out.println(userID);
+//        System.out.println(userID);
+        try {
+            if(registrationDao.deleteUser(userID)){
+                result.put("status", "200");
+                return SUCCESS;
+            }else{
+                result.put("status", "400");
+                return SUCCESS;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisterAction.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return SUCCESS;
     }
 }
