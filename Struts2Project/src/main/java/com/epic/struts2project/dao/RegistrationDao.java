@@ -101,4 +101,25 @@ public class RegistrationDao {
             return false;
         }
     }
+    
+    public RegistrationBean getAllRegistrationDetails(String userID) throws SQLException, ClassNotFoundException{
+        Connection connection = dbConnection.getConnection();
+         PreparedStatement pstm = connection.prepareStatement("select * from registration where userID=?");
+        pstm.setObject(1, userID);
+            ResultSet rst = pstm.executeQuery();
+            if (rst.next()) {
+                return new RegistrationBean(
+                        rst.getString(1),
+                        rst.getString(2),
+                        rst.getString(3),
+                        rst.getString(4),
+                        rst.getString(5),
+                        rst.getString(6),
+                        rst.getString(7),
+                        rst.getString(8)
+                );
+            }else{
+                return null;
+            }
+    }
 }

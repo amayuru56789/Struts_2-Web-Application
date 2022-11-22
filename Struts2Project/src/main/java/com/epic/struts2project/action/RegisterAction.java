@@ -105,12 +105,14 @@ public class RegisterAction extends ActionSupport {
         
         HttpServletResponse response = ServletActionContext.getResponse();
         HttpServletRequest request = ServletActionContext.getRequest();
-        
+//        Object newuserID =ServletActionContext.getContext().get("userID");
         LocalDateTime time = LocalDateTime.now();  
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");  
         String lastDateTime = time.format(format);
         String name = request.getParameter("userID");
         System.out.println(name);
+        RegistrationBean searchUser = registrationDao.getAllRegistrationDetails(request.getParameter("userID"));
+        String createTime = searchUser.getCreateTime();
         RegistrationBean registrationBean = new RegistrationBean(
                   request.getParameter("userID"),
                   request.getParameter("userName"),
@@ -118,7 +120,7 @@ public class RegisterAction extends ActionSupport {
                   request.getParameter("email"),
                   request.getParameter("contact"),
                   request.getParameter("password"),
-                  " ",
+                  createTime,
                   lastDateTime
           );
         System.out.println(registrationBean);

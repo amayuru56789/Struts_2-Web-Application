@@ -151,7 +151,46 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
-    <script src="controller/ViewController.js"></script>    
+    <script src="controller/ViewController.js"></script>
+    <script>
+        $("#btnUpdate").click(function (){
+            
+            var userOb={
+            userID:$("#txtUserId").val(),
+            userName:$("#txtUserName").val(),
+            address:$("#txtUserAddress").val(),
+            email:$("#txtEmail").val(),
+            contact:$("#txtContact").val(),
+            password:$("#txtPassword").val()
+        }
+            $.ajax({
+          url:"updateuser",
+          method:"POST",
+//          contentType:"application/json", //request content type json
+          data:"userID=" + userOb.userID + "&" + "userName="+ userOb.userName + "&" + "address="+ userOb.address + "&" + "email="+ userOb.email + "&" + "contact="+ userOb.contact + "&" + "password="+ userOb.password, //convert valid query String
+          success:function (res){
+              /*console.log(res);*/
+              if (res.status==="200"){
+                  swal("Successfully Update the User!", "You clicked the button!", "success");
+                  //alert(res.message);
+                  loadAllUsers();
+              }else if (res.status===400){
+                  swal("Failed to Update the User!", "You clicked the button!", "error");
+                  ///alert(res.message);
+
+              }else {
+                  //alert(res.data);
+                  swal("Failed to Update the User!", "You clicked the button!", "error");
+              }
+              /*alert(res);
+              loadAllUsers();*/
+          },
+          error:function (ob, error) {
+              console.log(ob);
+          }
+       });
+        });   
+    </script>
     <script src="controller/tableClick.js"></script>
     <script>
         $("#btnClear").click(function (){
